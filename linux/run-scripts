@@ -1,0 +1,79 @@
+#!/usr/bin/bash
+
+work_dir="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
+
+dry="0"
+filter=""
+script_dir="scripts" #default scripts directory
+
+
+cd $work_dir
+scripts=$(find $script_dir -maxdepth 1 -mindepth 1 -executable -type f -not -name "run-scripts")
+
+show_usage() {
+    echo "Usage: $0 [--dry] [--scripts-dir <path>] [--filter <value>] [--help|-h]"
+    echo "  --dry           : Enable dry run mode"
+    echo "  --scripts-dir   : Set script directory path (default dir: 'scripts')"
+    echo "  --filter        : Run scripts that match the filter"
+    echo "  --help, -h      : Show this help message"
+}
+
+#loop through provided arguments 
+while [[ $# > 0 ]]; do
+    if [[ "$1" == "--dry" ]]; then
+        dry="1"
+    elif [[ "$1" == "--scripts-dir" ]]; then
+        shift  # Move to the next argument (the directory path)
+        if [[ $# == 0 ]]; then
+            echo "Error: --scripts-dir requires a directory path"
+            exit 1
+        fi
+        script_dir="$1"
+    elif [[ "$1" == "--filter" ]]; then
+        shift  # Move to the next argument (the filter value)
+        if [[ $# == 0 ]]; then
+            echo "Error: --filter requires a value"
+            exit 1
+        fi
+        filter="$1"
+    #help menu
+    elif [[ "$1" == "--help" || "$1" == "-h" ]]; then
+        show_usage
+        exit 0
+    else
+        echo "Error: Unknown argument '$1'"
+        show_usage
+        exit 1
+    fi
+    shift
+done
+
+log() {
+    if [[ $dry == "1" ]]; then
+        echo "[DRY_RUN]: $@"
+    else
+        echo "$@"
+    fi
+}
+
+execute() {
+    log "execute: $@"
+    if [[ $dry == "1" ]]; then
+        return
+    fi
+
+    "$@"
+}
+
+log "starting"
+log "current filter: $filter"
+
+for script in $scripts; do
+   # script is only run if it matches the provided filter. If filter is "" all scripts get run.  grep -v is inverse match.
+    if echo "$script" | grep -qv "$filter"; then 
+        log "skipping: '$filter' not found in '$script'"
+        continue
+    fi
+    execute ./$script
+done
+log "done"
