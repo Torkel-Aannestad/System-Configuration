@@ -1,0 +1,72 @@
+#!/usr/bin/bash
+
+WORK_DIR="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
+dry_run="0"
+
+if [ -z "$XDG_CONFIG_HOME" ]; then
+    echo "no xdg config home"
+    echo "using ~/.config"
+    XDG_CONFIG_HOME=$HOME/.config
+fi
+
+
+if [[ "$1" == "--dry" ]]; then
+    dry="1"
+fi
+
+
+
+log() {
+    if [[ $dry == "1" ]]; then
+        echo "[DRY_RUN]: $@"
+    else
+        echo "$@"
+    fi
+}
+
+execute() {
+    log "execute: $@"
+    if [[ $dry == "1" ]]; then
+        return
+    fi
+
+    "$@"
+}
+
+
+copy_dir() {
+    pushd "$1" > /dev/null
+    to="$2"
+    env_dirs=$(find . -maxdepth 1 -mindepth 1 -type d)
+    echo "Directories to copy:"
+    printf '%s\n' $env_dirs
+    for dir in $env_dirs; do
+        clean_dir="${dir#./}"
+        execute rm -rf "$to/$clean_dir"
+        execute cp -r "$dir" "$to/$clean_dir"
+    done
+    popd > /dev/null
+}
+
+
+copy_file() {
+    from="$1"
+    to="$2"
+    name=$(basename $from)
+    execute rm $to/$name 
+    execute cp $from $to/$name
+}
+
+copy_dir "$WORK_DIR/env/.config" "$XDG_CONFIG_HOME"
+copy_dir "$WORK_DIR/env/.local" "$HOME/.local"
+
+copy $WORK_DIR/env/.zsh_profile $HOME/.zsh_profile
+copy $WORK_DIR/env/.zshrc $HOME/.zshrc
+
+# copy $WORK_DIR/env/.xprofile $HOME/.xprofile
+# copy $WORK_DIR/env/.tmux-sessionizer $HOME/.tmux-sessionizer
+# copy $WORK_DIR/dev-env $HOME/.local/scripts/dev-env
+# copy $WORK_DIR/tmux-sessionizer/tmux-sessionizer $HOME/.local/scripts/tmux-sessionizer
+
+
+source $HOME/.zshrc

@@ -4,7 +4,7 @@ set -e  # exit script if a command fails
 
 sudo apt-get -y update
 
-sudo apt-get install -y fzf btop curl
+sudo apt-get install -y fzf btop curl bat
 sudo apt-get install -y git ripgrep xclip jq tldr python3-pip
 
 # sudo apt-get install -y ghostty
