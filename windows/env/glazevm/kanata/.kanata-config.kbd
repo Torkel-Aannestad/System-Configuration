@@ -1,0 +1,47 @@
+;; defsrc is still necessary
+(defcfg
+  process-unmapped-keys yes
+)
+
+
+(defsrc
+  caps s d f j k l
+)
+
+(defvar
+  tap-time 150
+  hold-time 250
+)
+
+(deflocalkeys-win
+  §   220
+  +   187
+  ´   219
+  å   221
+  ¨   186
+  ø   192
+  æ   222
+  '   191
+  <   226
+  ,   188
+  .   190
+  -   189
+)
+
+(defalias
+  escctrl (tap-hold $tap-time $hold-time esc lctl)
+  s (tap-hold $tap-time $hold-time s lalt)
+  d (tap-hold $tap-time $hold-time d lsft)
+  f (tap-hold $tap-time $hold-time f lctl)
+  j (tap-hold $tap-time $hold-time j rctl)
+  k (tap-hold $tap-time $hold-time k rsft)
+  l (tap-hold $tap-time $hold-time l lalt)
+)
+;; ; (tap-hold $tap-time $hold-time ; rmet)
+;; Tatt ut ø/; fra defalias deflayer base og defsrc
+;;  a (tap-hold $tap-time $hold-time a lmet)
+
+
+(deflayer base
+  @escctrl @s @d @f @j @k @l
+)
