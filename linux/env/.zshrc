@@ -8,9 +8,9 @@ source $ZSH/oh-my-zsh.sh
 export XDG_CONFIG_HOME=$HOME/.config
 
 #config
-[[ -f "$XDG_CONFIG_HOME/.zsh-config/functions" ]] && source "$XDG_CONFIG_HOME/.zsh-config/functions"
-[[ -f "$XDG_CONFIG_HOME/.zsh-config/path" ]] && source "$XDG_CONFIG_HOME/.zsh-config/path"
-[[ -f "$XDG_CONFIG_HOME/.zsh-config/aliases" ]] && source "$XDG_CONFIG_HOME/.zsh-config/aliases"
+[[ -f $XDG_CONFIG_HOME/.zsh-config/functions ]] && source "$XDG_CONFIG_HOME/.zsh-config/functions"
+[[ -f $XDG_CONFIG_HOME/.zsh-config/path ]] && source "$XDG_CONFIG_HOME/.zsh-config/path"
+[[ -f $XDG_CONFIG_HOME/.zsh-config/aliases ]] && source "$XDG_CONFIG_HOME/.zsh-config/aliases"
 
 #fzf
 source /usr/share/doc/fzf/examples/key-bindings.zsh
