@@ -39,3 +39,8 @@ rm -f "$TARBALL"
 
 
 echo "Verify installation by running 'go version'."
+
+
+echo "go install air"
+go install github.com/air-verse/air@latest
+echo "done"
