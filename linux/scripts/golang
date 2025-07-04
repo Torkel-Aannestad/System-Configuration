@@ -1,0 +1,41 @@
+#!/usr/bin/bash
+
+set -e
+
+GO_BASE_URL="https://go.dev/dl"
+INSTALL_DIR="/usr/local"
+ARCH="amd64"           
+OS="linux"
+TEMP_BASE_DIR="$HOME/temp"
+
+# Ensure temp directory exists
+mkdir -p "$TEMP_BASE_DIR"
+
+# Get latest stable Go version (ignoring beta/rc), write standard error to /dev/null because grep writes to a closed pipe after initial. 
+LATEST_VERSION=$( curl -sSL "$GO_BASE_URL" 2>/dev/null | grep -oP 'go[0-9]+\.[0-9]+(\.[0-9]+)?(?<!beta)(?<!rc)' | head -1  2>/dev/null)
+
+if [ -z "$LATEST_VERSION" ]; then
+    echo "Failed to detect the latest Go version"
+    exit 1
+fi
+
+echo "Latest Go version: $LATEST_VERSION"
+
+TARBALL="${LATEST_VERSION}.${OS}-${ARCH}.tar.gz"
+DOWNLOAD_URL="${GO_BASE_URL}/${TARBALL}"
+
+echo "Downloading ${DOWNLOAD_URL} ..."
+cd "$TEMP_BASE_DIR"
+curl -LO "$DOWNLOAD_URL"
+
+echo "Removing any previous Go installation ..."
+sudo rm -rf "${INSTALL_DIR}/go"
+
+echo "Extracting Go to ${INSTALL_DIR} ..."
+sudo tar -C "$INSTALL_DIR" -xzf "$TARBALL"
+
+echo "Cleaning up download file ..."
+rm -f "$TARBALL"
+
+
+echo "Verify installation by running 'go version'."

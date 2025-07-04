@@ -8,7 +8,7 @@ script_dir="scripts" #default scripts directory
 
 
 cd $work_dir
-scripts=$(find $script_dir -maxdepth 1 -mindepth 1 -executable -type f -not -name "run-scripts")
+scripts=$(find $script_dir -maxdepth 1 -mindepth 1 -executable -type f -not -name "run-scripts" | sort) #filenames must not include spaces, otherwise sort messes things up. 
 
 show_usage() {
     echo "Usage: $0 [--dry] [--scripts-dir <path>] [--filter <value>] [--help|-h]"
