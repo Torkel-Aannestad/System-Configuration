@@ -1,0 +1,2 @@
+- Kanata script. Download executable
+- windows dotfiles
