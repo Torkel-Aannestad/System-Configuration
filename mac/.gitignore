@@ -1,0 +1,75 @@
+# Claud's bash .gitnore: 
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor and IDE files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vim/
+.netrwhist
+
+# Log files
+*.log
+logs/
+*.out
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Backup files
+*.bak
+*.backup
+*.orig
+*.save
+
+# Configuration files (add specific ones you don't want to commit)
+config.local
+.env
+.env.local
+secrets.sh
+credentials.sh
+
+# Runtime files
+*.pid
+*.lock
+
+# Archives
+*.tar
+*.tar.gz
+*.zip
+*.rar
+
+# Cache directories
+cache/
+.cache/
+
+# Build artifacts (if applicable)
+build/
+dist/
+bin/
+*.o
+*.so
+*.a
+
+# Testing artifacts
+test_results/
+coverage/
+*.coverage
+
+# Documentation builds
+docs/_build/

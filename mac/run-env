@@ -1,0 +1,66 @@
+#!/bin/zsh
+
+WORK_DIR="$(cd "$(dirname "${(%):-%x}")" && pwd)"
+dry_run="0"
+
+if [[ -z "$XDG_CONFIG_HOME" ]]; then
+    echo "no xdg config home"
+    echo "using ~/.config"
+    XDG_CONFIG_HOME=$HOME/.config
+fi
+
+if [[ "$1" == "--dry" ]]; then
+    dry_run="1"
+fi
+
+log() {
+    if [[ $dry_run == "1" ]]; then
+        echo "[DRY_RUN]: $*"
+    else
+        echo "$*"
+    fi
+}
+
+execute() {
+    log "execute: $*"
+    if [[ $dry_run == "1" ]]; then
+        return 0
+    fi
+
+    "$@"
+}
+
+copy_dir() {
+    local from_dir="$1"
+    local to_dir="$2"
+    pushd "$from_dir" > /dev/null || return 1
+
+    # Use BSD find compatible to get dirs only at depth 1 excluding '.'
+    local env_dirs
+    env_dirs=$(find . -type d -prune ! -name '.')
+
+    for dir in $env_dirs; do
+        local clean_dir="${dir#./}"
+        execute rm -rf "$to_dir/$clean_dir"
+        execute cp -r "$dir" "$to_dir/$clean_dir"
+    done
+
+    popd > /dev/null || return 1
+}
+
+copy_file() {
+    local from="$1"
+    local to="$2"
+    local name
+    name=$(basename "$from")
+
+    execute rm -f "$to/$name"
+    execute cp "$from" "$to/$name"
+}
+
+copy_dir "$WORK_DIR/env/.config" "$XDG_CONFIG_HOME"
+# copy_dir "$WORK_DIR/env/.local" "$HOME/.local"
+
+copy_file "$WORK_DIR/env/.zshrc" "$HOME"
+
+echo "run: exec zsh"
