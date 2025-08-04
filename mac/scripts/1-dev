@@ -4,6 +4,6 @@ set -e  # exit script if a command fails
 
 brew update
 
-brew install -y fzf btop curl bat
-brew install -y git ripgrep jq tldr
-brew install -y wget
+brew install fzf btop curl bat
+brew install git ripgrep jq tldr
+brew install wget
