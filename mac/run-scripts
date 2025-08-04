@@ -1,0 +1,89 @@
+#!/bin/zsh
+
+# Get the directory containing this script
+work_dir="$(cd "$(dirname "${(%):-%x}")" && pwd)"
+
+dry="0"
+filter=""
+script_dir="scripts" # default scripts directory
+
+cd "$work_dir" || exit 1
+
+# Find executable files (not named run-scripts) under $script_dir, depth 1
+scripts=($(find "$script_dir" -maxdepth 1 -mindepth 1 -type f -perm +111 -not -name "run-scripts" | sort))
+
+show_usage() {
+    echo "Usage: $0 [--dry] [--scripts-dir <path>] [--filter <value>] [--help|-h]"
+    echo "  --dry           : Enable dry run mode"
+    echo "  --scripts-dir   : Set script directory path (default dir: 'scripts')"
+    echo "  --filter        : Run scripts that match the filter"
+    echo "  --help, -h      : Show this help message"
+}
+
+# Argument parsing
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --dry)
+            dry="1"
+            ;;
+        --scripts-dir)
+            shift
+            if [[ $# -eq 0 ]]; then
+                echo "Error: --scripts-dir requires a directory path"
+                exit 1
+            fi
+            script_dir="$1"
+            # re-build the scripts list since directory changed
+            scripts=($(find "$script_dir" -maxdepth 1 -mindepth 1 -type f -perm +111 -not -name "run-scripts" | sort))
+            ;;
+        --filter)
+            shift
+            if [[ $# -eq 0 ]]; then
+                echo "Error: --filter requires a value"
+                exit 1
+            fi
+            filter="$1"
+            ;;
+        --help|-h)
+            show_usage
+            exit 0
+            ;;
+        *)
+            echo "Error: Unknown argument '$1'"
+            show_usage
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+log() {
+    if [[ $dry == "1" ]]; then
+        echo "[DRY_RUN]: $*"
+    else
+        echo "$*"
+    fi
+}
+
+execute() {
+    log "execute: $*"
+    if [[ $dry == "1" ]]; then
+        return
+    fi
+
+    "$@"
+}
+
+log "starting"
+log "current filter: $filter"
+
+for script in $scripts; do
+    # If filter is empty, match all scripts (skip grep if empty)
+    if [[ -n $filter ]] && ! echo "$script" | grep -q "$filter"; then
+        log "skipping: filter '$filter' not found in '$script'"
+        continue
+    fi
+    execute "./$script"
+done
+
+log "done"
