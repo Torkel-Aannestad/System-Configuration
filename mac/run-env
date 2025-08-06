@@ -35,13 +35,14 @@ copy_dir() {
     local to_dir="$2"
     pushd "$from_dir" > /dev/null || return 1
 
-    local env_dirs
-    env_dirs=$(find . -type d  ! -name '.')
-    echo env_dirs
+    local -a env_dirs
+    env_dirs=($(find . -type d  ! -name '.'))
+
     for dir in $env_dirs; do
         local clean_dir="${dir#./}"
         execute rm -rf "$to_dir/$clean_dir"
         execute cp -r "$dir" "$to_dir/$clean_dir"
+        echo ""
     done
 
     popd > /dev/null || return 1
@@ -58,7 +59,6 @@ copy_file() {
 }
 
 copy_dir "$WORK_DIR/env/.config/" "$XDG_CONFIG_HOME"
-# copy_dir "$WORK_DIR/env/.local" "$HOME/.local"
 
 copy_file "$WORK_DIR/env/.zshrc" "$HOME"
 
