@@ -55,11 +55,21 @@ copy_file() {
     name=$(basename "$from")
 
     execute rm -f "$to/$name"
-    execute cp "$from" "$to/$name"
+    execute sudo cp "$from" "$to/$name"
 }
 
 copy_dir "$WORK_DIR/env/.config/" "$XDG_CONFIG_HOME"
 
 copy_file "$WORK_DIR/env/.zshrc" "$HOME"
+
+#kanata files for autolaunch service on startup
+#echo ""
+#echo "kanata config"
+#copy_file "$WORK_DIR/env/kanata-launchctl/com.torkelaannestad.kanata.plist" "/Library/LaunchDaemons"
+#echo ""
+#copy_file "$WORK_DIR/env/kanata-launchctl/com.torkelaannestad.karabiner-vhiddaemon.plist" "/Library/LaunchDaemons"
+#echo ""
+#copy_file "$WORK_DIR/env/kanata-launchctl/com.torkelaannestad.karabiner-vhidmanager.plist" "/Library/LaunchDaemons"
+
 
 echo "run: exec zsh"
