@@ -60,6 +60,9 @@ copy_file() {
 
 copy_dir "$WORK_DIR/env/.config/" "$XDG_CONFIG_HOME"
 
+#.ssh/config
+copy_file "$WORK_DIR/env/.ssh/config" "$HOME/.ssh"
+
 copy_file "$WORK_DIR/env/.zshrc" "$HOME"
 
 #kanata files for autolaunch service on startup

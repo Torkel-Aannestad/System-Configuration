@@ -23,3 +23,6 @@ export FZF_CTRL_T_OPTS="--preview 'bat --style=plain --color=always --line-range
 
 export FZF_ALT_C_COMMAND='find . -type d ' #--color=never --hidden
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+
+#SSH mac setting
+export APPLE_SSH_ADD_BEHAVIOR=use-keychain
