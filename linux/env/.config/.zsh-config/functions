@@ -32,7 +32,7 @@ useSSH() {
         export SSH_AUTH_SOCK=$(ls -l /tmp/ssh-*/agent.* | grep $((SSH_AGENT_PID -1)) | awk '{print $9}')
         echo "Connected to ssh-agent: PID=$SSH_AGENT_PID, Socket=$SSH_AUTH_SOCK"
     fi
-    
+
     ssh-add -l &>/dev/null
     if [ $? != 0 ]; then
         echo "adding keys"
