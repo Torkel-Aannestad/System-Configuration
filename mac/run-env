@@ -74,5 +74,7 @@ copy_file "$WORK_DIR/env/.zshrc" "$HOME"
 #echo ""
 #copy_file "$WORK_DIR/env/kanata-launchctl/com.torkelaannestad.karabiner-vhidmanager.plist" "/Library/LaunchDaemons"
 
+#copy command to clickboard
+echo "exec zsh" | pbcopy
 
-echo "run: exec zsh"
+echo "Paste form clickboard and run 'exec zsh'"
