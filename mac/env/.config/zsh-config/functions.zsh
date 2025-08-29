@@ -18,7 +18,7 @@ addToPathFront() {
 
 #Navigate Directory
 nd() {
-  DIR=$(fd . --type d -hidden --exclude .git node_modules 2>/dev/null | fzf) && cd "$DIR"
+  DIR=$(fd . --type d --hidden --exclude .git --exclude node_modules 2>/dev/null | fzf) && cd "$DIR"
 }
 
 #navigate projects
@@ -29,7 +29,7 @@ np() {
     ~/projects/personal \
     ~/projects/personal/bootdev \
     ~/projects/personal/frontend-masters \
-    --hidden --type d --exclude .git node_modules --max-depth 1 2>/dev/null | fzf) && cd "$DIR"
+    --hidden --type d --exclude .git --exclude node_modules --max-depth 1 2>/dev/null | fzf) && cd "$DIR"
 }
 
 #ls function with option to pass additional arguments

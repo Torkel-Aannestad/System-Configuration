@@ -1,1 +1,8 @@
 theme = GitHub-Dark-Default
+## theme = Ghostty Default StyleDark
+## theme = iceberg-dark
+
+window-padding-x = 40
+window-padding-y = 0, 40
+
+font-size = 18
