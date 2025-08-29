@@ -16,15 +16,32 @@ addToPathFront() {
     fi
 }
 
-#Change Directory
-fd() {
-  DIR=$(find . -type d -prune | fzf) && cd "$DIR"
-}
-#find project
-fp() {
-    DIR=$(find ~/projects ~/projects/test-projects ~/projects/frontend-masters -type d -prune | fzf) && cd "$DIR"
+#Navigate Directory
+nd() {
+  DIR=$(fd . --type d -hidden --exclude .git node_modules 2>/dev/null | fzf) && cd "$DIR"
 }
 
+#navigate projects
+np() {
+    DIR=$(fd . ~/projects \
+    ~/projects/test \
+    ~/projects/coop \
+    ~/projects/personal \
+    ~/projects/personal/bootdev \
+    ~/projects/personal/frontend-masters \
+    --hidden --type d --exclude .git node_modules --max-depth 1 2>/dev/null | fzf) && cd "$DIR"
+}
+
+#ls function with option to pass additional arguments
+unalias ls 2>/dev/null #unalias ls and send errors to dev/null if ls does not have an alias
+ls() {
+    eza --all --icons=auto --git-ignore --long --no-filesize --no-user --no-time "$@"
+}
+
+#ls with three view
+lst(){
+    ls --tree --level=3 "$@"
+}
 
 useSSH() {
     AGENT_INFO=$(pgrep -fl ssh-agent | head -n 1)
