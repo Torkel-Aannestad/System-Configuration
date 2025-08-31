@@ -6,4 +6,3 @@ winget install -e --id junegunn.fzf
 winget install -e --id lars-berger.GlazeWM
 winget install -e --id Netbird.Netbird
 # winget install -e --id Tailscale.Tailscale
-winget install -e --id ProtonTechnologies.ProtonVPN

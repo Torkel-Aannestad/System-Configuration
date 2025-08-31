@@ -194,21 +194,21 @@ window_rules:
     match:
       - window_process: { regex: "Code" }
 
-  - commands: ["move --workspace 6", "set-tiling"]
+  - commands: ["move --workspace 4", "set-tiling"]
     match:
-      - window_process: { regex: "Spotify" }
+      - window_process: { regex: "Spotify|notion|ms-teams" }
 
-  - commands: ["move --workspace 7", "set-tiling"]
-    match:
-      - window_process: { regex: "Notion" }
+  # - commands: ["move --workspace 7", "set-tiling"]
+  #   match:
+  #     - window_process: { regex: "Notion" }
 
-  - commands: ["move --workspace 8", "set-tiling"]
-    match:
-      - window_process: { regex: "ms-teams" }
+  # - commands: ["move --workspace 8", "set-tiling"]
+  #   match:
+  #     - window_process: { regex: "ms-teams" }
 
-  - commands: ["move --workspace 9", "set-tiling"]
-    match:
-      - window_process: { regex: "Explorer" }
+  # - commands: ["move --workspace 9", "set-tiling"]
+  #   match:
+  #     - window_process: { regex: "Explorer" }
 
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
