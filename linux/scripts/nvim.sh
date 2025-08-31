@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+set -e
+
 echo ""
 echo "installing neovim"
 

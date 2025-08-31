@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+set -e
+
 sudo apt-get install zsh
 
 sudo chsh -s $(which zsh) #change shell to zsh

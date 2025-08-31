@@ -1,4 +1,6 @@
-#!/bin/zsh
+#!/usr/bin/bash
+
+set -e
 
 # Check if user.name and user.email are already set globally
 existing_email=$(git config --global user.email)
