@@ -10,7 +10,7 @@ git config --global user.name "Torkel Aannestad"
 git config --global core.editor "vim"     #zed --wait waits for zed/vs code to close
 git config --global pull.rebase true
 git config --global init.defaultBranch main
-git config --global credential.helper osxkeychain #macos only
+#git config --global credential.helper osxkeychain #macos only
 
 #If email not in config, read from input (to not include email in repo)
 if [[ -n "$existing_email" ]]; then
