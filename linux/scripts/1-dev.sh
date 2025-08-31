@@ -4,10 +4,24 @@ set -e  # exit script if a command fails
 
 sudo apt-get -y update
 
-sudo apt-get install -y fzf btop curl bat
-sudo apt-get install -y git ripgrep xclip jq tldr python3-pip
-sudo apt-get install -y wget ca-certificates
+echo ""
+echo "starting install..."
+sudo apt-get install -y git
+sudo apt-get install -y btop
+sudo apt-get install -y curl
+sudo apt-get install -y wget
+sudo apt-get install -y fzf
+sudo apt-get install -y batcat 
+sudo apt-get install -y fd-find
+sudo apt-get install -y ripgrep
+sudo apt-get install -y jq
+sudo apt-get install -y xclip
+sudo apt-get install -y tldr
+sudo apt-get install -y python3-pip
+sudo apt-get install -y ca-certificates
+sudo apt-get install -y lazygit
+sudo apt-get install -y protobuf-compiler
+protoc --version 
 
-# sudo apt-get install -y ghostty
-# curl -sSfL https://get.tur.so/install.sh | bash
-
+echo ""
+echo "done dev install"
