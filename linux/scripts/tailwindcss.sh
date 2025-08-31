@@ -9,12 +9,6 @@ EXECUTABLE_NAME="tailwindcss"
 
 mkdir -p "$TEMP_BASE_DIR"
 
-# Check jq presence
-if ! command -v jq >/dev/null 2>&1; then
-    echo "jq is required but not installed. Please run: sudo apt install jq"
-    exit 1
-fi
-
 echo "Fetching latest Tailwind CLI release info..."
 RELEASE_JSON=$(curl -sSL "$GITHUB_API_URL")
 
