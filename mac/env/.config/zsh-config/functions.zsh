@@ -43,6 +43,11 @@ lst(){
     ls --tree --level=3 "$@"
 }
 
+#open system-configuration in zed
+editconfig(){
+    zed $HOME/projects/system-configuration/mac
+}
+
 useSSH() {
     AGENT_INFO=$(pgrep -fl ssh-agent | head -n 1)
     if [ -z "$AGENT_INFO" ]; then
