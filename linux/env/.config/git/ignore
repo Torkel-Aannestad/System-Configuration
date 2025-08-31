@@ -1,0 +1,49 @@
+#.config/git/ignore is the default global ignore file location for git. If you change it you need to update "git config --global core.excludesFile ~/.newfilepath"
+
+# MacOS.gitignore
+
+## General
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon[]
+
+## Thumbnails
+._*
+
+## Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+## Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+
+#VisualStudioCode.gitignore
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+!*.code-workspace
+
+## Built Visual Studio Code Extensions
+*.vsix
+
+
+
+# todo.gitignore
+todos.md
+todo.md
+tasks.md
+task.md
