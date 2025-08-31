@@ -1,13 +1,12 @@
 #!/bin/zsh
 
-
 addToPathFront "$HOME/.zig"
 addToPathFront "$HOME/.deno/bin"
 addToPath "$HOME/.cargo/bin"
 addToPath "$HOME/.sst/bin"
 addToPath "$HOME/.npm-global/bin"
 
-addToPathFront "$HOME/.local/apps      "
+addToPathFront "$HOME/.local/apps"
 addToPathFront "$HOME/.local/scripts"
 addToPathFront "$HOME/.local/bin"
 addToPathFront "$HOME/.local/n/bin"

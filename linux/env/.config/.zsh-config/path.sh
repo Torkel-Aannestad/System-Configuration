@@ -1,24 +1,24 @@
 #!/usr/bin/bash
 
-addToPathFront $HOME/.zig
-addToPathFront $HOME/.deno/bin
-addToPath $HOME/.cargo/bin
-addToPath $HOME/.sst/bin
-addToPath $HOME/.npm-global/bin
+addToPathFront "$HOME/.zig"
+addToPathFront "$HOME/.deno/bin"
+addToPath "$HOME/.cargo/bin"
+addToPath "$HOME/.sst/bin"
+addToPath "$HOME/.npm-global/bin"
 
-addToPathFront $HOME/.local/apps      
-addToPathFront $HOME/.local/scripts
-addToPathFront $HOME/.local/bin
-addToPathFront $HOME/.local/n/bin
-addToPathFront $HOME/.local/npm/bin
-addToPathFront $HOME/.local/.npm-global/bin
+addToPathFront "$HOME/.local/apps"
+addToPathFront "$HOME/.local/scripts"
+addToPathFront "$HOME/.local/bin"
+addToPathFront "$HOME/.local/n/bin"
+addToPathFront "$HOME/.local/npm/bin"
+addToPathFront "$HOME/.local/.npm-global/bin"
 
-addToPathFront $HOME/.local/go/bin
+addToPathFront "$HOME/.local/go/bin"
 addToPathFront /usr/local/go/bin
 addToPathFront /usr/lib/mime/packages/
 
-export GOPATH=$HOME/go
-addToPathFront $GOPATH/bin
+export GOPATH="$HOME/go"
+addToPathFront "$GOPATH/bin"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 addToPath $PNPM_HOME
 

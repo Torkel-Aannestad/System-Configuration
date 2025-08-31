@@ -16,9 +16,38 @@ addToPathFront() {
     fi
 }
 
-validateYaml() {
-    python -c 'import yaml,sys;yaml.safe_load(sys.stdin)' < $1
+#Navigate Directory
+nd() {
+  DIR=$(fd . --type d --hidden --exclude .git --exclude node_modules 2>/dev/null | fzf) && cd "$DIR"
 }
+
+#navigate projects
+np() {
+    DIR=$(fd . ~/projects \
+    ~/projects/test-projects/
+    ~/projects/coop \
+    ~/projects/personal \
+    ~/projects/bootdotdev \
+    ~/projects/frontend-masters \
+    --hidden --type d --exclude .git --exclude node_modules --max-depth 1 2>/dev/null | fzf) && cd "$DIR"
+}
+
+#ls function with option to pass additional arguments
+unalias ls 2>/dev/null #unalias ls and send errors to dev/null if ls does not have an alias
+ls() {
+    eza --all --icons=auto --git-ignore --long --no-filesize --no-user --no-time "$@"
+}
+
+#ls with three view
+lst(){
+    ls --tree --level=3 "$@"
+}
+
+#open system-configuration in zed
+editconfig(){
+    zed $HOME/projects/system-configuration/mac
+}
+
 
 useSSH() {
     AGENT_INFO=$(ps -ef | grep "ssh-agent" | grep -v "grep" | head -n 1)
@@ -40,15 +69,4 @@ useSSH() {
     else
         echo "all good"
     fi
-}
-
-#Change Directory
-fd() {
-  DIR=`find * -maxdepth 1 -type d | fzf` \
-    && cd "$DIR"
-}
-#find project
-fp(){
-    DIR=`find ~/projects/ ~/projects/bootdotdev/ ~/projects/test-projects/ ~/projects/frontend-masters -mindepth 1 -maxdepth 1 -type d | fzf `\
-    && cd "$DIR"
 }
