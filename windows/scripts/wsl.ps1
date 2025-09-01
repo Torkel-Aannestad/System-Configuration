@@ -16,6 +16,4 @@ wsl --status
 ubuntu config --default-user johndoe
 
 
-
-
 wsl  vim, 
