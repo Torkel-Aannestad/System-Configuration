@@ -25,3 +25,8 @@ addToPath "/opt/homebrew/bin"
 addToPath "/opt/homebrew/sbin"
 
 addToPath "/opt/homebrew/opt/fzf/bin" #fzf binaries such as auto complete and key bindings
+
+#Coop related
+export GONOPROXY='github.com/coopnorge'
+export GONOSUMDB='github.com/coopnorge'
+export GOPRIVATE='github.com/coopnorge'
