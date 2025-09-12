@@ -17,12 +17,5 @@ brew install eza
 brew install jq
 brew install tldr
 brew install wget
-brew install lazygit
-
-brew install fzf
-$(brew --prefix)/opt/fzf/install --bin #downloads fzf binaries, but does not generate .fzf/zsh
-
-brew install protobuf
-protoc --version
 
 echo "done dev install"

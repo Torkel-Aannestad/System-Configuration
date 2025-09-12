@@ -19,3 +19,6 @@ brew install --cask slack
 
 echo "Aethyst"
 brew install --cask amethyst
+
+echo "OrbStack"
+brew install --cask orbstack

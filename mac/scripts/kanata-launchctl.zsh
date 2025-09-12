@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 set -e
-run=true
+run=false
 
 if [[ "$run" == "true" && -e /Library/LaunchDaemons/com.torkelaannestad.kanata.plist && -e  /Library/LaunchDaemons/com.torkelaannestad.karabiner-vhiddaemon.plist && -e /Library/LaunchDaemons/com.torkelaannestad.karabiner-vhidmanager.plist ]]; then
 
