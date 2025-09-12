@@ -25,7 +25,6 @@ nd() {
 np() {
     DIR=$(fd . ~/projects \
     ~/projects/test-projects/
-    ~/projects/coop \
     ~/projects/personal \
     ~/projects/bootdotdev \
     ~/projects/frontend-masters \
