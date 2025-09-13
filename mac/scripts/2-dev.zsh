@@ -16,7 +16,4 @@ $(brew --prefix)/opt/fzf/install --bin #downloads fzf binaries, but does not gen
 brew install protobuf
 protoc --version
 
-#clone zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
 echo "done dev install"
