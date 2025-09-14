@@ -1,9 +1,10 @@
-## WSL
+# Win11 setup
+- Currently there is no automated setup of scripts or env files for windows.
 
-- WSL is installed with script, however you must do some setup steps manually.
-- After WSL install and reboot. Open terminal and run ubuntu.
-- Set up your new user
-- run setup "run-scripts" from Linux directory in this repo.
+## WSL
+- WSL is installed manually
+- Set up SSH
+- Clone this repo to WSL and run Linux setup
 
 ## VS code
 
@@ -13,6 +14,23 @@
 
 - https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers
 - Open Docker Desktop and settings -> choose "Use WSL based engine"
+
+## Guide for remote
+
+- Create local user
+  - Account -> Other users -> Don't have email -> Add without account
+  - Set insane PW
+- RDP
+  - Settings -> System -> Remote Destop -> ON
+  - Add user -> your newly created user
+- Connect to Tailscale
+  - Get device name from Tailscale
+- Connect from remote to tailscale device name
+- Set up local user
+  - Browser
+  - Connect to accounts
+  - Remote connection software
+  - PW manager
 
 ## Kanata
 

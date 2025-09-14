@@ -1,15 +1,8 @@
-# Linux System Configurations
+# Linux Setup
 
-- app directory contains the script-runner, while scripts include individual scripts.
+## Eza
+- Script must be run manually for some reason.
 
-## How to use
-
--
-
-```bash
-    ./index -flags
-```
-
+##
 TODO:
- - Eza script must be run manually for some reason.
  - install nerd font
