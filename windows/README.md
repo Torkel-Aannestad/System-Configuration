@@ -32,7 +32,13 @@
   - Remote connection software
   - PW manager
 
-## Kanata
+## Other
+- Add sync to sharepoint
+- Background
+
+
+## Archive
+### Kanata
 
 - Add kanata_gui.exe to program files
   - C:\Program Files\Kanata
