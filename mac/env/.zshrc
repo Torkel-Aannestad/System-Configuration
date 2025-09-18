@@ -28,3 +28,8 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 
 #SSH mac setting
 export APPLE_SSH_ADD_BEHAVIOR=use-keychain
+
+#GCLOUD
+export GOOGLE_APPLICATION_CREDENTIALS=$XDG_CONFIG_HOME/gcloud/application_default_credentials.json
+# Enable prod data in shoppinglist
+export BIGQUERY_DEV_PROJECT_ID=shopping-list-production-1288
